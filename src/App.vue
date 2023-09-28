@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       state
+
     }
   },
 
@@ -35,6 +36,7 @@ export default {
         aria-describedby="search-addon" v-model="this.state.movieSelected" />
       <button @click="searchMovies" type="button" class="btn btn-outline-primary">search</button>
     </div>
+    <h1>prova </h1>
     <div class="row row-cols-2 g-5">
       <div class="col" v-for="movie in state.moviesList">
 
@@ -47,8 +49,15 @@ export default {
           <h6> Titolo originale: </h6>
           <p>{{ movie.original_title }}</p>
 
+
           <h6> Lingua: </h6>
-          <p>{{ movie.original_language }}</p>
+          <img v-if="movie.original_language == 'en'" class="flag" src="./assets/img/ukflag.png">
+          <img v-else-if="movie.original_language == 'fr'" class="flag" src="./assets/img/france.png">
+          <img v-else-if="movie.original_language == 'it'" class="flag" src="./assets/img/italy.png">
+          <img v-else-if="movie.original_language == 'es'" class="flag" src="./assets/img/spain.png">
+
+
+          <p v-else>{{ movie.original_language }}</p>
 
           <h6> Voto: </h6>
           <p>{{ movie.vote_average }}</p>
@@ -62,4 +71,8 @@ export default {
 
 <style lang="scss">
 @use './assets/scss/partials/variables.scss' as *;
+
+.flag {
+  width: 20px;
+}
 </style>
