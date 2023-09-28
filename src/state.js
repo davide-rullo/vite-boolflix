@@ -7,8 +7,31 @@ export const state = reactive({
     moviesList: [],
     movieSelected: "",
 
+    serieUrl: 'https://api.themoviedb.org/3/search/tv',
+    seriesList: [],
+
 
     fetchData(url) {
+        axios.get(url,
+            {
+                params: {
+                    api_key: this.apiKey,
+                    query: this.movieSelected,
+                }
+            })
+
+            .then(response => {
+                this.moviesList = response.data.results;
+                console.log(response.data);
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    },
+
+    fetchDataSeries(url) {
         axios.get(url,
             {
                 params: {

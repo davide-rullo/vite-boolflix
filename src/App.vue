@@ -16,6 +16,7 @@ export default {
   methods: {
     searchMovies() {
       state.fetchData(this.state.apiUrl);
+      state.fetchDataSeries(this.state.serieUrl);
     }
   }
 }
@@ -39,7 +40,7 @@ export default {
     <h1>prova </h1>
     <div class="row row-cols-2 g-5">
       <div class="col" v-for="movie in state.moviesList">
-
+        <h1>{{ movie.name }}</h1>
 
         <div class="card">
           <h6>Titolo: </h6>
