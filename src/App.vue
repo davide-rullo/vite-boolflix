@@ -11,6 +11,12 @@ export default {
       state
     }
   },
+
+  methods: {
+    searchMovies() {
+      state.fetchData(this.state.apiUrl);
+    }
+  }
 }
 </script>
 
@@ -27,15 +33,30 @@ export default {
     <div class="input-group">
       <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
         aria-describedby="search-addon" v-model="this.state.movieSelected" />
-      <button type="button" class="btn btn-outline-primary">search</button>
+      <button @click="searchMovies" type="button" class="btn btn-outline-primary">search</button>
     </div>
-    <ul>
-      <li>Ciao</li>
-      <li>Ciao</li>
-      <li>Ciao</li>
-      <li>Ciao</li>
-      <li>Ciao</li>
-    </ul>
+    <div class="row row-cols-2 g-5">
+      <div class="col" v-for="movie in state.moviesList">
+
+
+        <div class="card">
+          <h6>Titolo: </h6>
+          <p>{{ movie.title }}</p>
+
+
+          <h6> Titolo originale: </h6>
+          <p>{{ movie.original_title }}</p>
+
+          <h6> Lingua: </h6>
+          <p>{{ movie.original_language }}</p>
+
+          <h6> Voto: </h6>
+          <p>{{ movie.vote_average }}</p>
+        </div>
+
+
+      </div>
+    </div>
   </div>
 </template>
 

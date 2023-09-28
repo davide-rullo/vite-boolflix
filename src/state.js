@@ -1,7 +1,30 @@
-import { reactive } from 'vue'
+import { reactive } from 'vue';
 import axios from 'axios';
 
 export const state = reactive({
+    apiKey: '05120fd7b187f3223ebe40d815cdfde5',
+    apiUrl: 'https://api.themoviedb.org/3/search/movie',
+    moviesList: [],
+    movieSelected: "",
 
 
+    fetchData(url) {
+        axios.get(url,
+            {
+                params: {
+                    api_key: this.apiKey,
+                    query: this.movieSelected,
+                }
+            })
+
+            .then(response => {
+                this.moviesList = response.data.results;
+                console.log(response.data);
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    }
 })
