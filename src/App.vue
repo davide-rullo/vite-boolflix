@@ -9,7 +9,8 @@ export default {
   data() {
     return {
       state,
-
+      starFill: '<i class="fa-solid fa-star" style="color: #ffd500;"></i>',
+      starEmpty: '<i class="fa-regular fa-star" style="color: #ffd500;"></i>'
     }
   },
 
@@ -64,7 +65,13 @@ export default {
           <p v-else>{{ movie.original_language }}</p>
 
           <h6> Voto: </h6>
-          <p>{{ (Math.ceil((movie.vote_average * 5) / 10)) }}</p>
+          <p>{{ Math.ceil((movie.vote_average * 5) / 10) }} </p>
+          <div class="d-flex">
+            <i v-for="i in Math.ceil((movie.vote_average * 5) / 10)" class="fa-solid fa-star" style="color: #ffd500;"></i>
+            <i v-for="i in (5 - Math.ceil((movie.vote_average * 5) / 10))" class="fa-regular fa-star"
+              style="color: #ffd500;"></i>
+          </div>
+
         </div>
 
 
