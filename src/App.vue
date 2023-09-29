@@ -197,14 +197,28 @@ body {
   padding: 1rem;
 }
 
+
+
 .car:hover .shows-info {
   display: block;
 }
 
 .car:hover .cover {
   filter: brightness(0.2);
+
 }
 
+.car:hover img {
+  transform: scale(1.5);
+}
+
+.car:hover {
+  z-index: 11;
+}
+
+.car img {
+  transition: linear .5s;
+}
 
 .menu-content {
   padding-top: 3rem;
