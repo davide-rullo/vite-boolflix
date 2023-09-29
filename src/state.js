@@ -9,6 +9,8 @@ export const state = reactive({
 
     serieUrl: 'https://api.themoviedb.org/3/search/tv',
 
+    popularList: [],
+
 
 
     fetchData(url) {
@@ -42,6 +44,20 @@ export const state = reactive({
 
             .then(response => {
                 this.moviesList = response.data.results;
+                console.log(response.data);
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    },
+
+    fetchDataPopular(url) {
+        axios.get(url)
+
+            .then(response => {
+                this.popularList = response.data.results;
                 console.log(response.data);
 
             })
