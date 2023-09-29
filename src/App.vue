@@ -45,42 +45,46 @@ export default {
 
   <!-- Popolari -->
   <div class="container menu-content">
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5" v-if="this.search == false">
+    <div class="row-header text-white" v-if="this.search == false">
+      <h5>I titoli del momento</h5>
 
-      <div class="col" v-for="movie in state.popularList">
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5">
 
-
-        <div class="card">
-          <img v-if="movie.backdrop_path" :src="`https://image.tmdb.org/t/p/w342/` + `${movie.backdrop_path}`" alt="">
-          <img v-else src="./assets/img/noavailable.jpg" height="298.66">
-          <h6>Titolo: </h6>
-          <p>{{ movie.title || movie.name }}</p>
+        <div class="col" v-for="movie in state.popularList">
 
 
-          <h6> Titolo originale: </h6>
-          <p>{{ movie.original_title || movie.original_name }}</p>
+          <div class="card">
+            <img v-if="movie.backdrop_path" :src="`https://image.tmdb.org/t/p/w342/` + `${movie.backdrop_path}`" alt="">
+            <img v-else src="./assets/img/noavailable.jpg" height="298.66">
+            <h6>Titolo: </h6>
+            <p>{{ movie.title || movie.name }}</p>
 
 
-          <h6> Lingua: </h6>
-          <img v-if="movie.original_language == 'en'" class="flag" src="./assets/img/ukflag.png">
-          <img v-else-if="movie.original_language == 'fr'" class="flag" src="./assets/img/france.png">
-          <img v-else-if="movie.original_language == 'it'" class="flag" src="./assets/img/italy.png">
-          <img v-else-if="movie.original_language == 'es'" class="flag" src="./assets/img/spain.png">
+            <h6> Titolo originale: </h6>
+            <p>{{ movie.original_title || movie.original_name }}</p>
 
 
-          <p v-else>{{ movie.original_language }}</p>
+            <h6> Lingua: </h6>
+            <img v-if="movie.original_language == 'en'" class="flag" src="./assets/img/ukflag.png">
+            <img v-else-if="movie.original_language == 'fr'" class="flag" src="./assets/img/france.png">
+            <img v-else-if="movie.original_language == 'it'" class="flag" src="./assets/img/italy.png">
+            <img v-else-if="movie.original_language == 'es'" class="flag" src="./assets/img/spain.png">
 
-          <h6> Voto: </h6>
-          <p>{{ Math.ceil((movie.vote_average * 5) / 10) }} </p>
-          <div class="d-flex">
-            <i v-for="i in Math.ceil((movie.vote_average * 5) / 10)" class="fa-solid fa-star" style="color: #ffd500;"></i>
-            <i v-for="i in (5 - Math.ceil((movie.vote_average * 5) / 10))" class="fa-regular fa-star"
-              style="color: #ffd500;"></i>
+
+            <p v-else>{{ movie.original_language }}</p>
+
+            <h6> Voto: </h6>
+            <p>{{ Math.ceil((movie.vote_average * 5) / 10) }} </p>
+            <div class="d-flex">
+              <i v-for="i in Math.ceil((movie.vote_average * 5) / 10)" class="fa-solid fa-star"
+                style="color: #ffd500;"></i>
+              <i v-for="i in (5 - Math.ceil((movie.vote_average * 5) / 10))" class="fa-regular fa-star"
+                style="color: #ffd500;"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
 
 
 
@@ -149,11 +153,14 @@ export default {
   background-color: $bf-darkContent;
 }
 
-.col {
-  padding-top: 4rem;
 
-  .card {
-    height: 400px;
-  }
+
+.card {
+  height: 400px;
+}
+
+
+.menu-content {
+  padding-top: 3rem;
 }
 </style>
