@@ -8,7 +8,7 @@ export default {
 
   data() {
     return {
-      state
+      state,
 
     }
   },
@@ -32,17 +32,20 @@ export default {
     </div>
   </nav>
   <div class="container">
-    <div class="input-group">
+    <div class="input-group p-4">
       <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
         aria-describedby="search-addon" v-model="this.state.movieSelected" />
       <button @click="searchMovies" type="button" class="btn btn-outline-primary">search</button>
     </div>
-    <h1>prova </h1>
+
     <div class="row row-cols-2 g-5">
       <div class="col" v-for="movie in state.moviesList">
 
 
         <div class="card">
+
+          <img :src="`https://image.tmdb.org/t/p/w342/` + `${movie.backdrop_path}`" alt="">
+
           <h6>Titolo: </h6>
           <p>{{ movie.title || movie.name }}</p>
 
@@ -61,7 +64,7 @@ export default {
           <p v-else>{{ movie.original_language }}</p>
 
           <h6> Voto: </h6>
-          <p>{{ movie.vote_average }}</p>
+          <p>{{ (Math.ceil((movie.vote_average * 5) / 10)) }}</p>
         </div>
 
 

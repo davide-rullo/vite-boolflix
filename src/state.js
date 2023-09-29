@@ -8,7 +8,7 @@ export const state = reactive({
     movieSelected: "",
 
     serieUrl: 'https://api.themoviedb.org/3/search/tv',
-    seriesList: [],
+
 
 
     fetchData(url) {
