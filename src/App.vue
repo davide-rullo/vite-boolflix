@@ -40,15 +40,15 @@ export default {
     <h1>prova </h1>
     <div class="row row-cols-2 g-5">
       <div class="col" v-for="movie in state.moviesList">
-        <h1>{{ movie.name }}</h1>
+
 
         <div class="card">
           <h6>Titolo: </h6>
-          <p>{{ movie.title }}</p>
+          <p>{{ movie.title || movie.name }}</p>
 
 
           <h6> Titolo originale: </h6>
-          <p>{{ movie.original_title }}</p>
+          <p>{{ movie.original_title || movie.original_name }}</p>
 
 
           <h6> Lingua: </h6>
