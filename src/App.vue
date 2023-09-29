@@ -45,8 +45,8 @@ export default {
 
         <div class="card">
 
-          <img :src="`https://image.tmdb.org/t/p/w342/` + `${movie.backdrop_path}`" alt="">
-
+          <img v-if="movie.backdrop_path" :src="`https://image.tmdb.org/t/p/w342/` + `${movie.backdrop_path}`" alt="">
+          <img v-else src="./assets/img/noavailable.jpg" height="298.66">
           <h6>Titolo: </h6>
           <p>{{ movie.title || movie.name }}</p>
 
