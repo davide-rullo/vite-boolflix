@@ -288,7 +288,7 @@ export default {
 
   <footer>
     <div class="container">
-      <div class="social d-flex gap-5 mt-5">
+      <div class="social d-flex gap-5 mt-5 mb-3">
         <a href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-facebook"
             viewBox="0 0 16 16">
@@ -384,6 +384,7 @@ export default {
 
 .flag {
   width: 20px;
+  height: 16px;
 }
 
 .navbar {
@@ -476,7 +477,7 @@ footer a {
 }
 
 footer li {
-  padding: .2rem;
+  padding: .2rem 0;
   color: #808080;
 }
 </style>
