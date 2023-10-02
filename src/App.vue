@@ -23,6 +23,8 @@ export default {
 
   mounted() {
     state.fetchDataPopular('https://api.themoviedb.org/3/trending/all/week?api_key=05120fd7b187f3223ebe40d815cdfde5');
+    state.fetchDataTvTop('https://api.themoviedb.org/3/tv/top_rated?api_key=05120fd7b187f3223ebe40d815cdfde5');
+    state.fetchDataMoviesTop('https://api.themoviedb.org/3/movie/top_rated?api_key=05120fd7b187f3223ebe40d815cdfde5');
 
   }
 }
@@ -47,7 +49,7 @@ export default {
   <!-- Popolari -->
   <div class="container menu-content">
     <div class="row-header text-white" v-if="this.search == false">
-      <h5>I titoli del momento</h5>
+      <h3 class="category-title">I titoli del momento</h3>
 
       <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 ">
 
@@ -58,7 +60,7 @@ export default {
             <div class="car">
               <img class="cover" v-if="movie.backdrop_path"
                 :src="`https://image.tmdb.org/t/p/w300/` + `${movie.backdrop_path}`" alt="">
-              <img v-else src="./assets/img/noavailable.jpg" height="298.66">
+              <img v-else src="./assets/img/noavailable.jpg" class="cover no-img">
 
 
               <div class="shows-info ">
@@ -102,6 +104,131 @@ export default {
 
     <!-- END popolari -->
 
+    <!-- Top Rated Serie TV -->
+
+
+    <div class="row-header text-white" v-if="this.search == false">
+      <h3 class="category-title">Le serie TV da non perdere</h3>
+
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 ">
+
+        <div class="col pb-4" v-for="movie in state.tvTopRated">
+
+
+          <a href="#">
+            <div class="car">
+              <img class="cover" v-if="movie.backdrop_path"
+                :src="`https://image.tmdb.org/t/p/w300/` + `${movie.backdrop_path}`" alt="">
+              <img v-else src="./assets/img/noavailable.jpg" class="cover no-img">
+
+
+              <div class="shows-info ">
+                <div class="show-title d-flex gap-2">
+                  <h6>Titolo: </h6>
+                  <p> {{ movie.title || movie.name }}</p>
+                </div>
+
+                <div class="original-title d-flex gap-2">
+                  <h6> Titolo originale: </h6>
+                  <p>{{ movie.original_title || movie.original_name }}</p>
+                </div>
+
+
+                <div class="lang d-flex gap-2">
+                  <h6> Lingua: </h6>
+                  <img v-if="movie.original_language == 'en'" class="flag" src="./assets/img/ukflag.png">
+                  <img v-else-if="movie.original_language == 'fr'" class="flag" src="./assets/img/france.png">
+                  <img v-else-if="movie.original_language == 'it'" class="flag" src="./assets/img/italy.png">
+                  <img v-else-if="movie.original_language == 'es'" class="flag" src="./assets/img/spain.png">
+                  <p v-else>{{ movie.original_language }}</p>
+
+                </div>
+
+                <div class="vote d-flex gap-2">
+                  <h6> Voto: </h6>
+
+                  <div class="d-flex">
+                    <i v-for="i in Math.ceil((movie.vote_average * 5) / 10)" class="fa-solid fa-star"
+                      style="color: #ffd500;"></i>
+                    <i v-for="i in (5 - Math.ceil((movie.vote_average * 5) / 10))" class="fa-regular fa-star"
+                      style="color: #ffd500;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- END Top Rated Serie TV -->
+
+
+
+
+    <!-- Top Rated Movies -->
+
+
+    <div class="row-header text-white" v-if="this.search == false">
+      <h3 class="category-title">Film acclamati dalla critica</h3>
+
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 ">
+
+        <div class="col pb-4" v-for="movie in state.moviesTopRated">
+
+
+          <a href="#">
+            <div class="car">
+              <img class="cover" v-if="movie.backdrop_path"
+                :src="`https://image.tmdb.org/t/p/w300/` + `${movie.backdrop_path}`" alt="">
+              <img v-else src="./assets/img/noavailable.jpg" class="cover no-img">
+
+
+              <div class="shows-info ">
+                <div class="show-title d-flex gap-2">
+                  <h6>Titolo: </h6>
+                  <p> {{ movie.title || movie.name }}</p>
+                </div>
+
+                <div class="original-title d-flex gap-2">
+                  <h6> Titolo originale: </h6>
+                  <p>{{ movie.original_title || movie.original_name }}</p>
+                </div>
+
+
+                <div class="lang d-flex gap-2">
+                  <h6> Lingua: </h6>
+                  <img v-if="movie.original_language == 'en'" class="flag" src="./assets/img/ukflag.png">
+                  <img v-else-if="movie.original_language == 'fr'" class="flag" src="./assets/img/france.png">
+                  <img v-else-if="movie.original_language == 'it'" class="flag" src="./assets/img/italy.png">
+                  <img v-else-if="movie.original_language == 'es'" class="flag" src="./assets/img/spain.png">
+                  <p v-else>{{ movie.original_language }}</p>
+
+                </div>
+
+                <div class="vote d-flex gap-2">
+                  <h6> Voto: </h6>
+
+                  <div class="d-flex">
+                    <i v-for="i in Math.ceil((movie.vote_average * 5) / 10)" class="fa-solid fa-star"
+                      style="color: #ffd500;"></i>
+                    <i v-for="i in (5 - Math.ceil((movie.vote_average * 5) / 10))" class="fa-regular fa-star"
+                      style="color: #ffd500;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- END Top Rated Movies -->
+
     <!-- Ricerca -->
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
       <div class="col pb-4" v-for="movie in state.moviesList">
@@ -110,7 +237,7 @@ export default {
           <div class="car">
             <img class="cover" v-if="movie.backdrop_path"
               :src="`https://image.tmdb.org/t/p/w300/` + `${movie.backdrop_path}`" alt="">
-            <img v-else src="./assets/img/noavailable.jpg">
+            <img v-else src="./assets/img/noavailable.jpg" class="cover no-img">
 
 
             <div class="shows-info ">
@@ -218,7 +345,7 @@ body {
 }
 
 .car img {
-  transition: linear .5s;
+  transition: linear .3s;
 }
 
 .menu-content {
@@ -230,7 +357,15 @@ img {
   max-height: 169px;
 }
 
+.no-img {
+  width: 100%;
+}
+
 a {
   color: white;
+}
+
+.category-title {
+  padding: 1rem 0;
 }
 </style>

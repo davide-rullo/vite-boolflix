@@ -11,6 +11,11 @@ export const state = reactive({
 
     popularList: [],
 
+    tvTopRated: [],
+    moviesTopRated: [],
+
+
+
 
 
 
@@ -59,7 +64,37 @@ export const state = reactive({
         axios.get(url)
 
             .then(response => {
-                this.popularList = response.data.results.slice(0, 10);
+                this.popularList = response.data.results.slice(0, 12);
+
+                console.log(response.data);
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    },
+
+    fetchDataTvTop(url) {
+        axios.get(url)
+
+            .then(response => {
+                this.tvTopRated = response.data.results.slice(0, 12);
+
+                console.log(response.data);
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    },
+
+    fetchDataMoviesTop(url) {
+        axios.get(url)
+
+            .then(response => {
+                this.moviesTopRated = response.data.results.slice(0, 12);
 
                 console.log(response.data);
 
