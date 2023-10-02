@@ -13,6 +13,8 @@ export const state = reactive({
 
 
 
+
+
     fetchData(url) {
         axios.get(url,
             {
@@ -57,7 +59,8 @@ export const state = reactive({
         axios.get(url)
 
             .then(response => {
-                this.popularList = response.data.results;
+                this.popularList = response.data.results.slice(0, 10);
+
                 console.log(response.data);
 
             })
@@ -65,5 +68,7 @@ export const state = reactive({
                 console.error(error);
             })
 
-    }
+    },
+
+
 })

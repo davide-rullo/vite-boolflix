@@ -22,7 +22,8 @@ export default {
   },
 
   mounted() {
-    state.fetchDataPopular('https://api.themoviedb.org/3/movie/popular?api_key=05120fd7b187f3223ebe40d815cdfde5')
+    state.fetchDataPopular('https://api.themoviedb.org/3/trending/all/week?api_key=05120fd7b187f3223ebe40d815cdfde5');
+
   }
 }
 </script>
